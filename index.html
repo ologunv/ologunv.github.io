@@ -3,441 +3,545 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Victor Ologun | AI, Cybersecurity & Information Systems</title>
-  <meta name="description" content="Personal website for Victor Ologun — focused on AI, cybersecurity, information systems, and cloud architecture." />
+  <title>Victor Ologun</title>
+  <meta name="description" content="Victor Ologun — AI, cybersecurity, information systems, and cloud architecture." />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255,255,255,0.06);
-      --text: #eef2ff;
-      --muted: #b8c1ec;
-      --accent: #7c9cff;
-      --accent-2: #56e0c5;
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 18px 50px rgba(0,0,0,0.35);
-      --max: 1080px;
+      --bg: #f6f3ee;
+      --paper: #fffdf9;
+      --text: #171717;
+      --muted: #5e5a56;
+      --line: #dfd8cf;
+      --accent: #111111;
+      --soft: #ece6dd;
+      --max: 1100px;
+      --radius: 28px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(124,156,255,0.18), transparent 30%),
-        radial-gradient(circle at top right, rgba(86,224,197,0.14), transparent 25%),
-        linear-gradient(180deg, #0a0f1f 0%, #0f1630 100%);
-      line-height: 1.6;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(var(--max), calc(100% - 2rem));
-      margin: 0 auto;
-    }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
 
     .nav {
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(16px);
-      background: rgba(10, 15, 31, 0.7);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(246, 243, 238, 0.72);
+      border-bottom: 1px solid rgba(23,23,23,0.04);
     }
 
     .nav-inner {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 1rem 0;
+      gap: 1rem;
     }
 
     .brand {
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: -0.02em;
+      font-size: 1rem;
     }
 
     .nav-links {
       display: flex;
       gap: 1rem;
+      font-size: 0.96rem;
       color: var(--muted);
-      font-size: 0.95rem;
     }
 
     .hero {
-      padding: 6rem 0 4rem;
+      padding: 4.5rem 0 2.25rem;
     }
 
-    .hero-grid {
+    .kicker {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: clamp(2.6rem, 7vw, 6.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      max-width: 12ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro {
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      color: var(--text);
+      max-width: 38ch;
+      letter-spacing: -0.02em;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .split {
       display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
       gap: 2rem;
-      grid-template-columns: 1.3fr 0.9fr;
-      align-items: center;
+      align-items: end;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      padding: 0.35rem 0.7rem;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      color: var(--accent-2);
-      background: rgba(255,255,255,0.04);
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+    .hero-note {
+      padding: 1.2rem 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.45);
+      color: var(--muted);
+      font-size: 0.98rem;
     }
 
-    h1, h2, h3 { line-height: 1.15; margin: 0 0 1rem; }
-    h1 { font-size: clamp(2.4rem, 5vw, 4.8rem); }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); }
-    p { margin: 0 0 1rem; color: var(--muted); }
-
-    .hero p.lead {
-      font-size: 1.1rem;
-      max-width: 62ch;
-    }
-
-    .cta-row {
+    .links-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 1.6rem;
+      gap: 0.7rem;
+      margin-top: 2rem;
     }
 
-    .btn {
+    .link-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 0.9rem 1.2rem;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.06);
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      gap: 0.45rem;
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--text);
       font-weight: 600;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.18);
-    }
-
-    .btn.primary {
-      background: linear-gradient(135deg, var(--accent), #5e77ff);
-      color: white;
-      border-color: transparent;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .profile-card {
-      padding: 1.4rem;
-    }
-
-    .avatar {
-      width: 84px;
-      height: 84px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      display: grid;
-      place-items: center;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: white;
-      margin-bottom: 1rem;
-    }
-
-    .stat-grid, .grid-3 {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .stat-grid {
-      grid-template-columns: repeat(2, 1fr);
-      margin-top: 1.2rem;
-    }
-
-    .stat, .info-card {
-      padding: 1rem;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong, .info-card strong {
-      display: block;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-
-    section {
+    .section {
       padding: 1.5rem 0 3rem;
     }
 
     .section-head {
-      max-width: 760px;
-      margin-bottom: 1.5rem;
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .timeline {
       display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding-top: 0.3rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 16ch;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-copy {
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .beliefs {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+
+    .belief {
+      padding: 1.1rem 0;
+      border-top: 1px solid var(--line);
+      font-size: clamp(1.15rem, 2.1vw, 1.6rem);
+      letter-spacing: -0.03em;
+    }
+
+    .belief:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
+      margin-top: 1rem;
     }
 
-    .timeline-item {
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       padding: 1.25rem;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
+      overflow: hidden;
     }
 
-    .timeline-item small {
-      color: var(--accent-2);
-      display: inline-block;
-      margin-bottom: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    .card-visual {
+      aspect-ratio: 16 / 10;
+      border-radius: 22px;
+      margin-bottom: 1rem;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06), transparent 30%),
+        linear-gradient(135deg, #e9e0d3, #f8f4ee 55%, #ddd3c6);
+      border: 1px solid rgba(23,23,23,0.05);
+      position: relative;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
+    .card-visual.dark {
+      background:
+        radial-gradient(circle at 75% 25%, rgba(124,156,255,0.25), transparent 20%),
+        linear-gradient(135deg, #111827, #182238 50%, #0d1321);
+    }
+
+    .card-visual.blue {
+      background:
+        radial-gradient(circle at 25% 20%, rgba(86,224,197,0.25), transparent 22%),
+        linear-gradient(135deg, #dbeafe, #eff6ff 50%, #cbd5e1);
+    }
+
+    .card-visual.green {
+      background:
+        radial-gradient(circle at 70% 25%, rgba(52,211,153,0.22), transparent 20%),
+        linear-gradient(135deg, #e7f8ef, #f7fcf8 50%, #d6f1e2);
+    }
+
+    .mini-ui {
+      position: absolute;
+      inset: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(23,23,23,0.08);
+      background: rgba(255,255,255,0.55);
+      padding: 1rem;
+      display: grid;
       gap: 0.7rem;
     }
 
-    .pill {
-      padding: 0.6rem 0.85rem;
+    .dark .mini-ui {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .ui-line, .ui-box {
       border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
+      background: rgba(23,23,23,0.08);
+    }
+
+    .dark .ui-line, .dark .ui-box {
+      background: rgba(255,255,255,0.14);
+    }
+
+    .ui-line { height: 10px; width: 48%; }
+    .ui-line.small { width: 28%; }
+    .ui-box { height: 100%; min-height: 70px; border-radius: 16px; }
+    .ui-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.7rem; flex: 1; }
+
+    .card-tag {
+      font-size: 0.93rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .card h3 {
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 55ch;
+    }
+
+    .list {
+      display: grid;
+      gap: 0;
+      margin-top: 0.5rem;
+    }
+
+    .list-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.25rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .list-item:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .list-meta {
       color: var(--muted);
       font-size: 0.95rem;
+    }
+
+    .list-item h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.03em;
     }
 
     .footer {
-      padding: 2rem 0 4rem;
+      padding: 2rem 0 3rem;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .note {
-      font-size: 0.92rem;
-      color: #c9d1ff;
-    }
-
     @media (max-width: 900px) {
-      .hero-grid, .grid-3 {
+      .split,
+      .cards,
+      .section-head,
+      .list-item {
         grid-template-columns: 1fr;
       }
-      .nav-links {
-        display: none;
-      }
+
+      .nav-links { display: none; }
+      .section-label { padding-top: 0; }
+      h1 { max-width: 100%; }
     }
   </style>
 </head>
 <body>
   <header class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#top">Victor Ologun</a>
+      <a class="brand" href="#top">victor ologun</a>
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#focus">Focus</a>
-        <a href="#work">Work</a>
-        <a href="#research">Research</a>
-        <a href="#contact">Contact</a>
+        <a href="#about">about</a>
+        <a href="#work">work</a>
+        <a href="#writing">research</a>
+        <a href="#contact">contact</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
+      <div class="container split">
         <div>
-          <div class="eyebrow">AI • Cybersecurity • Information Systems • Cloud</div>
-          <h1>Victor Ologun</h1>
-          <p class="lead">
-            I’m building at the intersection of <strong>artificial intelligence</strong>, <strong>cybersecurity</strong>,
-            <strong>information systems</strong>, and <strong>cloud architecture</strong>.
-            This site is a simple professional home for my background, research interests, and online presence.
+          <p class="kicker">AI, cybersecurity, information systems, and cloud architecture.</p>
+          <h1>i build and study systems that need to work in the real world.</h1>
+          <p class="intro">
+            i’m Victor Ologun. my interests sit at the edge of <strong>intelligent systems</strong>,
+            <strong>secure digital infrastructure</strong>, <strong>cloud-enabled products</strong>, and
+            <strong>technology adoption</strong>.
           </p>
-          <p>
-            From public signals I could verify, your profile is associated with Le Moyne College and research themes around
-            digital banking, AI adoption, cybersecurity, and modern information systems.
-          </p>
-          <div class="cta-row">
-            <a class="btn primary" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">View LinkedIn</a>
-            <a class="btn" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
-            <a class="btn" href="#contact">Get in touch</a>
+          <div class="links-row">
+            <a class="link-pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin</a>
+            <a class="link-pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar</a>
+            <a class="link-pill" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">orcid</a>
+          </div>
+        </div>
+        <div class="hero-note">
+          built from public signals i could verify: a linkedin profile result tied to Le Moyne College,
+          plus scholar records around AI, cybersecurity, digital banking, and applied information systems.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">about</div>
+          <div>
+            <h2 class="section-title">a simple professional home.</h2>
+            <p class="section-copy">
+              this site is intentionally minimal. it’s meant to feel clear, calm, and confident—more like a well-edited notebook than a corporate brochure.
+              the goal is to show what i care about, what i’m working on, and what kind of problems i like spending time with.
+            </p>
           </div>
         </div>
 
-        <aside class="card profile-card">
-          <div class="avatar">VO</div>
-          <h3>Profile Snapshot</h3>
-          <p>
-            Public web results suggest a professional and academic profile centered on emerging technology,
-            security, and applied systems thinking.
-          </p>
-          <div class="stat-grid">
-            <div class="stat">
-              <strong>Affiliation</strong>
-              <span>Le Moyne College</span>
+        <div class="beliefs">
+          <div class="belief">i think useful systems should be both intelligent and trustworthy.</div>
+          <div class="belief">i think security should be designed in, not added on later.</div>
+          <div class="belief">i think research matters most when it survives contact with reality.</div>
+          <div class="belief">i think cloud infrastructure should feel boring in the best possible way: reliable, scalable, and invisible when it works.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-label">work</div>
+          <div>
+            <h2 class="section-title">things i care about building.</h2>
+            <p class="section-copy">
+              not case studies in the usual portfolio sense. more like a map of the domains and system problems i’m drawn to.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-visual dark">
+              <div class="mini-ui">
+                <div class="ui-line"></div>
+                <div class="ui-grid">
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                </div>
+                <div class="ui-line small"></div>
+              </div>
             </div>
-            <div class="stat">
-              <strong>Focus Areas</strong>
-              <span>AI, security, cloud, IS</span>
+            <div class="card-tag">01 / AI systems</div>
+            <h3>applying AI where trust, risk, and operational accuracy matter.</h3>
+            <p>
+              i’m interested in AI systems that support real decisions—fraud detection, intelligent analysis,
+              automation workflows, and tools that improve operational effectiveness without adding chaos.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-visual blue">
+              <div class="mini-ui">
+                <div class="ui-line"></div>
+                <div class="ui-grid">
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                </div>
+                <div class="ui-line small"></div>
+              </div>
             </div>
-            <div class="stat">
-              <strong>Public Research</strong>
-              <span>Banking, cyber risk, supply chains</span>
+            <div class="card-tag">02 / cybersecurity</div>
+            <h3>understanding how security shapes confidence, behavior, and adoption.</h3>
+            <p>
+              cybersecurity is not just a technical problem. it changes how people trust systems,
+              how organizations respond to risk, and how digital products succeed or fail.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-visual green">
+              <div class="mini-ui">
+                <div class="ui-line"></div>
+                <div class="ui-grid">
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                </div>
+                <div class="ui-line small"></div>
+              </div>
             </div>
-            <div class="stat">
-              <strong>Presence</strong>
-              <span>LinkedIn, Scholar, ORCID</span>
+            <div class="card-tag">03 / information systems</div>
+            <h3>studying the systems behind digital transformation.</h3>
+            <p>
+              i’m drawn to questions about adoption, usability, governance, and how technology creates measurable outcomes inside institutions and markets.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-visual">
+              <div class="mini-ui">
+                <div class="ui-line"></div>
+                <div class="ui-grid">
+                  <div class="ui-box"></div>
+                  <div class="ui-box"></div>
+                </div>
+                <div class="ui-line small"></div>
+              </div>
             </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2>About</h2>
-          <p>
-            I’m interested in how intelligent systems, secure digital infrastructure, and practical research can be used to solve real-world problems.
-            My work and interests span AI-powered systems, cybersecurity, digital transformation, cloud infrastructure, and data-driven decision-making.
-          </p>
-        </div>
-        <div class="grid-3">
-          <div class="info-card card">
-            <strong>Technical Lens</strong>
-            <p>I care about building systems that are useful, secure, scalable, and grounded in actual user needs.</p>
-          </div>
-          <div class="info-card card">
-            <strong>Research Lens</strong>
-            <p>I’m drawn to work that connects technology adoption, trust, risk, and measurable outcomes.</p>
-          </div>
-          <div class="info-card card">
-            <strong>Professional Lens</strong>
-            <p>I value clarity, execution, and thoughtful application of emerging technology rather than buzzword theater.</p>
-          </div>
+            <div class="card-tag">04 / cloud architecture</div>
+            <h3>building infrastructure that scales quietly and holds up under pressure.</h3>
+            <p>
+              i care about resilient systems, sensible architecture decisions, and cloud foundations that make products easier to maintain, secure, and extend.
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="focus">
+    <section class="section" id="writing">
       <div class="container">
         <div class="section-head">
-          <h2>Core Focus Areas</h2>
-          <p>These are the themes that showed up most clearly in your public footprint and are strong anchors for a simple professional website.</p>
+          <div class="section-label">research</div>
+          <div>
+            <h2 class="section-title">public research signals.</h2>
+            <p class="section-copy">
+              these are based on publicly accessible scholar snippets and search results. they should be treated as a starting point and refined with your exact preferred wording.
+            </p>
+          </div>
         </div>
-        <div class="pill-row">
-          <span class="pill">Artificial Intelligence</span>
-          <span class="pill">Cybersecurity</span>
-          <span class="pill">Information Systems</span>
-          <span class="pill">Cloud Architecture</span>
-          <span class="pill">Digital Banking</span>
-          <span class="pill">Technology Adoption</span>
-          <span class="pill">Risk & Compliance</span>
-          <span class="pill">Data & Analytics</span>
+
+        <div class="list">
+          <article class="list-item">
+            <div class="list-meta">2025</div>
+            <div>
+              <h3>cybersecurity and customer satisfaction in digital banking</h3>
+              <p class="muted">research connecting cybersecurity and customer satisfaction through an information systems success model.</p>
+            </div>
+          </article>
+
+          <article class="list-item">
+            <div class="list-meta">2025</div>
+            <div>
+              <h3>AI-driven fraud detection in the nigerian banking sector</h3>
+              <p class="muted">an analysis of cost, compliance, and competency in AI-powered fraud detection systems.</p>
+            </div>
+          </article>
+
+          <article class="list-item">
+            <div class="list-meta">2025</div>
+            <div>
+              <h3>behavioral analysis of AI-powered solutions for cyberthreat-induced complaints</h3>
+              <p class="muted">work exploring how people respond to AI-enabled solutions in lower-income digital environments.</p>
+            </div>
+          </article>
+
+          <article class="list-item">
+            <div class="list-meta">2025</div>
+            <div>
+              <h3>drivers of AI in modern supply chain management success</h3>
+              <p class="muted">research examining what pushes intelligent systems adoption in contemporary supply chain settings.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="work">
+    <section class="section" id="contact">
       <div class="container">
         <div class="section-head">
-          <h2>What I Work On</h2>
-          <p>A concise way to describe the kind of work this site suggests.</p>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item card">
-            <small>AI & Intelligent Systems</small>
-            <h3>Applying AI to practical decision-making</h3>
-            <p>I’m interested in how AI can improve detection, analysis, and operational efficiency in domains like finance, cybersecurity, and organizational systems.</p>
-          </div>
-          <div class="timeline-item card">
-            <small>Cybersecurity</small>
-            <h3>Security, trust, and user impact</h3>
-            <p>My interests include cyber risk, user behavior, secure digital experiences, and the broader impact of emerging threats on customer trust and system adoption.</p>
-          </div>
-          <div class="timeline-item card">
-            <small>Cloud & Systems</small>
-            <h3>Scalable infrastructure and modern architectures</h3>
-            <p>I care about cloud-enabled systems that are resilient, efficient, and designed with both business outcomes and technical integrity in mind.</p>
+          <div class="section-label">contact</div>
+          <div>
+            <h2 class="section-title">find me on the internet.</h2>
+            <p class="section-copy">
+              for now, the simplest version is the right one.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section id="research">
-      <div class="container">
-        <div class="section-head">
-          <h2>Public Research Signals</h2>
-          <p>
-            I couldn’t directly scrape LinkedIn, but public search results and Google Scholar point to the following research themes and publications.
-          </p>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item card">
-            <small>2025</small>
-            <h3>Cybersecurity and customer satisfaction in digital banking</h3>
-            <p>Research connecting cybersecurity and customer satisfaction through an information systems success model.</p>
+        <div class="list">
+          <div class="list-item">
+            <div class="list-meta">linkedin</div>
+            <div><h3><a href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin.com/in/victor-ologun</a></h3></div>
           </div>
-          <div class="timeline-item card">
-            <small>2025</small>
-            <h3>AI-powered fraud detection in Nigerian banking</h3>
-            <p>Work exploring cost, compliance, and competency in AI-driven fraud detection systems.</p>
+          <div class="list-item">
+            <div class="list-meta">scholar</div>
+            <div><h3><a href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar profile</a></h3></div>
           </div>
-          <div class="timeline-item card">
-            <small>2025</small>
-            <h3>Behavioral analysis of AI-powered security solutions</h3>
-            <p>Research on user response to AI-powered solutions for cyberthreat-induced complaints in low-income countries.</p>
+          <div class="list-item">
+            <div class="list-meta">orcid</div>
+            <div><h3><a href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">0009-0009-0102-1608</a></h3></div>
           </div>
-          <div class="timeline-item card">
-            <small>2025</small>
-            <h3>AI in supply chain management</h3>
-            <p>Work examining drivers of artificial intelligence adoption in modern supply chain management success.</p>
-          </div>
-        </div>
-        <p class="note" style="margin-top:1rem;">
-          Note: this section is based on publicly accessible search results and Google Scholar snippets, so it should be reviewed and customized by you before publishing.
-        </p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2>Connect</h2>
-          <p>If you’d like to collaborate, talk research, or discuss technology, feel free to reach out through the platforms below.</p>
-        </div>
-        <div class="grid-3">
-          <a class="info-card card" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">
-            <strong>LinkedIn</strong>
-            <p>linkedin.com/in/victor-ologun</p>
-          </a>
-          <a class="info-card card" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">
-            <strong>Google Scholar</strong>
-            <p>View publications and citations</p>
-          </a>
-          <a class="info-card card" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">
-            <strong>ORCID</strong>
-            <p>0009-0009-0102-1608</p>
-          </a>
         </div>
       </div>
     </section>
@@ -445,12 +549,8 @@
 
   <footer class="footer">
     <div class="container">
-      <p>© <span id="year"></span> Victor Ologun. Built as a simple, editable one-page personal website.</p>
+      <p>victor ologun — a minimal personal website, rebuilt with a cleaner editorial layout.</p>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
