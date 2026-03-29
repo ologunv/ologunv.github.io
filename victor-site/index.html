@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Victor Ologun</title>
+  <meta name="description" content="Victor Ologun — AI, cybersecurity, information systems, and cloud architecture." />
+  <style>
+    :root {
+      --bg: #f7f3ec;
+      --paper: #fffdf8;
+      --text: #141414;
+      --muted: #625d57;
+      --line: #ddd5ca;
+      --max: 1120px;
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 243, 236, 0.76);
+      border-bottom: 1px solid rgba(20,20,20,0.05);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    .brand { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 1rem; color: var(--muted); font-size: 0.95rem; }
+    .hero { padding: 4.5rem 0 2rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: end;
+    }
+    .eyebrow {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 1.1rem;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 6.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      max-width: 11ch;
+      margin-bottom: 1.35rem;
+    }
+    .lead {
+      font-size: clamp(1.12rem, 2vw, 1.42rem);
+      max-width: 40ch;
+      letter-spacing: -0.02em;
+    }
+    .aside {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.48);
+      border-radius: 24px;
+      padding: 1.15rem 1.2rem;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    .links-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .section { padding: 1.5rem 0 3rem; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.1rem;
+    }
+    .label { color: var(--muted); font-size: 0.95rem; padding-top: 0.3rem; }
+    .title {
+      font-size: clamp(1.65rem, 3vw, 2.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 16ch;
+      margin-bottom: 0.8rem;
+    }
+    .copy { max-width: 62ch; color: var(--muted); font-size: 1.02rem; }
+    .beliefs { display: grid; gap: 0.8rem; margin-top: 1rem; }
+    .belief {
+      padding: 1.05rem 0;
+      border-top: 1px solid var(--line);
+      font-size: clamp(1.16rem, 2vw, 1.58rem);
+      letter-spacing: -0.03em;
+    }
+    .belief:last-child { border-bottom: 1px solid var(--line); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .visual {
+      aspect-ratio: 16 / 10;
+      border-radius: 22px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(20,20,20,0.05);
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ebe2d7, #f7f3ec 55%, #ddd2c4);
+    }
+    .visual.dark { background: linear-gradient(135deg, #111827, #1c2942 52%, #0d1320); }
+    .visual.blue { background: linear-gradient(135deg, #dbeafe, #eff6ff 55%, #cbd5e1); }
+    .visual.green { background: linear-gradient(135deg, #e6f8ee, #f5fbf7 55%, #d4efdf); }
+    .mock {
+      position: absolute;
+      inset: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(20,20,20,0.08);
+      background: rgba(255,255,255,0.58);
+      padding: 1rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .visual.dark .mock {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .line, .box { background: rgba(20,20,20,0.08); border-radius: 999px; }
+    .visual.dark .line, .visual.dark .box { background: rgba(255,255,255,0.14); }
+    .line { height: 10px; width: 48%; }
+    .line.small { width: 30%; }
+    .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 0.7rem; flex: 1; }
+    .box { min-height: 76px; border-radius: 16px; }
+    .tag { color: var(--muted); font-size: 0.93rem; margin-bottom: 0.35rem; }
+    .card h3 {
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.55rem;
+    }
+    .card p { color: var(--muted); font-size: 1rem; }
+    .list { display: grid; gap: 0; margin-top: 0.5rem; }
+    .item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 1.2rem;
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .item:last-child { border-bottom: 1px solid var(--line); }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    .item h3 { font-size: 1.15rem; margin-bottom: 0.38rem; letter-spacing: -0.03em; }
+    .muted { color: var(--muted); }
+    .footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
+    @media (max-width: 900px) {
+      .hero-grid, .cards, .section-head, .item { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      h1 { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">victor ologun</a>
+      <nav class="nav-links">
+        <a href="#about">about</a>
+        <a href="#work">work</a>
+        <a href="#research">research</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">AI, cybersecurity, information systems, and cloud architecture.</p>
+          <h1>i build and study systems that need to work in the real world.</h1>
+          <p class="lead">
+            i’m Victor Ologun. my work sits at the edge of <strong>intelligent systems</strong>,
+            <strong>secure digital infrastructure</strong>, <strong>information systems research</strong>, and
+            <strong>cloud-enabled products</strong>.
+          </p>
+          <div class="links-row">
+            <a class="pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin</a>
+            <a class="pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar</a>
+            <a class="pill" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">orcid</a>
+          </div>
+        </div>
+        <div class="aside">
+          a minimal personal site inspired by the editorial feel of marco.fyi — adapted for your own work,
+          research, and technical interests.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">about</div>
+          <div>
+            <h2 class="title">a calm, direct home on the internet.</h2>
+            <p class="copy">
+              this site is intentionally simple. the goal is not to look busy. it is to make your work legible:
+              what you study, what you build, and what kinds of systems you care about improving.
+            </p>
+          </div>
+        </div>
+
+        <div class="beliefs">
+          <div class="belief">i think useful systems should be both intelligent and trustworthy.</div>
+          <div class="belief">i think security should be built in early, not patched on later.</div>
+          <div class="belief">i think research matters most when it helps real decisions.</div>
+          <div class="belief">i think cloud infrastructure should feel quiet, stable, and dependable.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">work</div>
+          <div>
+            <h2 class="title">the kinds of problems i like working on.</h2>
+            <p class="copy">
+              not portfolio case studies in the usual sense. more like a map of the domains and system questions i keep returning to.
+            </p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="visual dark">
+              <div class="mock">
+                <div class="line"></div>
+                <div class="grid"><div class="box"></div><div class="box"></div></div>
+                <div class="line small"></div>
+              </div>
+            </div>
+            <div class="tag">01 / AI systems</div>
+            <h3>applying AI where trust, risk, and operational accuracy matter.</h3>
+            <p>i’m interested in AI systems that support real decisions: fraud detection, intelligent analysis, workflow automation, and systems that improve outcomes without adding noise.</p>
+          </article>
+
+          <article class="card">
+            <div class="visual blue">
+              <div class="mock">
+                <div class="line"></div>
+                <div class="grid"><div class="box"></div><div class="box"></div></div>
+                <div class="line small"></div>
+              </div>
+            </div>
+            <div class="tag">02 / cybersecurity</div>
+            <h3>understanding how security shapes confidence, behavior, and adoption.</h3>
+            <p>cybersecurity is not only technical. it changes how people trust systems, how organizations respond to risk, and how digital products succeed or fail.</p>
+          </article>
+
+          <article class="card">
+            <div class="visual green">
+              <div class="mock">
+                <div class="line"></div>
+                <div class="grid"><div class="box"></div><div class="box"></div></div>
+                <div class="line small"></div>
+              </div>
+            </div>
+            <div class="tag">03 / information systems</div>
+            <h3>studying the systems behind digital transformation.</h3>
+            <p>i’m drawn to adoption, usability, governance, and the question of how technology creates measurable outcomes inside institutions and markets.</p>
+          </article>
+
+          <article class="card">
+            <div class="visual">
+              <div class="mock">
+                <div class="line"></div>
+                <div class="grid"><div class="box"></div><div class="box"></div></div>
+                <div class="line small"></div>
+              </div>
+            </div>
+            <div class="tag">04 / cloud architecture</div>
+            <h3>building infrastructure that scales quietly and holds up under pressure.</h3>
+            <p>i care about resilient systems, sensible architecture choices, and cloud foundations that make products easier to secure, maintain, and extend.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="research">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">research</div>
+          <div>
+            <h2 class="title">selected research directions.</h2>
+            <p class="copy">
+              a concise snapshot of public-facing themes in your current work. this can be refined later with exact paper titles, abstracts, and links.
+            </p>
+          </div>
+        </div>
+
+        <div class="list">
+          <article class="item">
+            <div class="meta">2025</div>
+            <div>
+              <h3>cybersecurity and customer satisfaction in digital banking</h3>
+              <p class="muted">work connecting cybersecurity and customer satisfaction through an information systems success lens.</p>
+            </div>
+          </article>
+          <article class="item">
+            <div class="meta">2025</div>
+            <div>
+              <h3>AI-driven fraud detection in the nigerian banking sector</h3>
+              <p class="muted">research on cost, compliance, and competency in AI-powered fraud detection systems.</p>
+            </div>
+          </article>
+          <article class="item">
+            <div class="meta">2025</div>
+            <div>
+              <h3>behavioral analysis of AI-powered solutions for cyberthreat-induced complaints</h3>
+              <p class="muted">exploring how people respond to AI-enabled solutions in digitally vulnerable environments.</p>
+            </div>
+          </article>
+          <article class="item">
+            <div class="meta">2025</div>
+            <div>
+              <h3>drivers of AI in modern supply chain management success</h3>
+              <p class="muted">research examining what pushes intelligent systems adoption in contemporary supply chain settings.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">contact</div>
+          <div>
+            <h2 class="title">find me on the internet.</h2>
+            <p class="copy">for now, the simplest version is the right one.</p>
+          </div>
+        </div>
+        <div class="list">
+          <div class="item">
+            <div class="meta">linkedin</div>
+            <div><h3><a href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin.com/in/victor-ologun</a></h3></div>
+          </div>
+          <div class="item">
+            <div class="meta">scholar</div>
+            <div><h3><a href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar profile</a></h3></div>
+          </div>
+          <div class="item">
+            <div class="meta">orcid</div>
+            <div><h3><a href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">0009-0009-0102-1608</a></h3></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Victor Ologun — personal website draft inspired by marco.fyi.</p>
+    </div>
+  </footer>
+</body>
+</html>
