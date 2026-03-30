@@ -78,6 +78,47 @@
       color: var(--muted);
       font-size: 0.98rem;
     }
+    .hero-stack {
+      display: grid;
+      gap: 1rem;
+      align-items: end;
+    }
+    .portrait-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(20,20,20,0.08);
+      background: linear-gradient(180deg, #efe7dc 0%, #e7ddd0 100%);
+      aspect-ratio: 4 / 5;
+      min-height: 420px;
+      box-shadow: 0 24px 80px rgba(20,20,20,0.08);
+    }
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .portrait-note {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 18px;
+      background: rgba(255, 253, 248, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(20,20,20,0.06);
+      color: #3c3834;
+      font-size: 0.95rem;
+    }
+    .portrait-note strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
     .links-row {
       display: flex;
       gap: 0.75rem;
@@ -186,6 +227,8 @@
       .hero-grid, .cards, .section-head, .item { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       h1 { max-width: 100%; }
+      .hero { padding-top: 3rem; }
+      .portrait-card { min-height: 360px; max-width: 520px; }
     }
   </style>
 </head>
@@ -219,9 +262,18 @@
             <a class="pill" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">orcid</a>
           </div>
         </div>
-        <div class="aside">
-          a minimal personal site inspired by the editorial feel of marco.fyi — adapted for your own work,
-          research, and technical interests.
+        <div class="hero-stack">
+          <div class="portrait-card">
+            <img src="assets/portrait.jpg" alt="Portrait of Victor Ologun" />
+            <div class="portrait-note">
+              <strong>Victor Ologun</strong>
+              building at the intersection of AI, cybersecurity, and cloud systems.
+            </div>
+          </div>
+          <div class="aside">
+            a minimal personal site inspired by the editorial feel of marco.fyi — adapted for your work,
+            research, and technical interests.
+          </div>
         </div>
       </div>
     </section>
