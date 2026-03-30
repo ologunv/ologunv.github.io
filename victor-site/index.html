@@ -566,6 +566,9 @@
 
       if (!nav || !pill || !links.length) return;
 
+      let suppressScrollSync = false;
+      let suppressTimer = null;
+
       const movePill = (link) => {
         const index = Number(link.dataset.index || 0);
         pill.style.transform = `translateX(${index * 100}%)`;
@@ -577,6 +580,7 @@
       };
 
       const updateActiveFromScroll = () => {
+        if (suppressScrollSync) return;
         const threshold = window.innerHeight * 0.28;
         let current = links[0];
 
@@ -592,12 +596,17 @@
       };
 
       links.forEach((link) => {
-        link.addEventListener('mouseenter', () => movePill(link));
-        link.addEventListener('focus', () => movePill(link));
-        link.addEventListener('click', () => setActive(link));
+        link.addEventListener('click', () => {
+          suppressScrollSync = true;
+          clearTimeout(suppressTimer);
+          setActive(link);
+          suppressTimer = setTimeout(() => {
+            suppressScrollSync = false;
+            updateActiveFromScroll();
+          }, 450);
+        });
       });
 
-      nav.addEventListener('mouseleave', updateActiveFromScroll);
       window.addEventListener('scroll', updateActiveFromScroll, { passive: true });
       window.addEventListener('resize', updateActiveFromScroll);
       window.addEventListener('load', updateActiveFromScroll);
