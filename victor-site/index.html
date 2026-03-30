@@ -50,30 +50,46 @@
       letter-spacing: -0.02em;
     }
     .nav-links {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-      padding: 0.3rem;
-      color: #8d8780;
-      font-size: 0.95rem;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(20,20,20,0.08);
-      border-radius: 999px;
-      box-shadow: 0 8px 30px rgba(20,20,20,0.08);
-      backdrop-filter: blur(14px);
-    }
-    .nav-links a {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 84px;
-      padding: 0.8rem 1.35rem;
+      gap: 0.12rem;
+      padding: 0.26rem;
+      color: #8f897f;
+      font-size: 0.94rem;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(20,20,20,0.08);
       border-radius: 999px;
-      transition: color 160ms ease, transform 160ms ease, background 160ms ease, font-weight 160ms ease;
+      box-shadow: 0 10px 34px rgba(20,20,20,0.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-pill {
+      position: absolute;
+      top: 0.26rem;
+      left: 0.26rem;
+      height: calc(100% - 0.52rem);
+      border-radius: 999px;
+      background: #efede9;
+      box-shadow: inset 0 0 0 1px rgba(20,20,20,0.03);
+      transition: transform 220ms ease, width 220ms ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .nav-links a {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 86px;
+      padding: 0.82rem 1.28rem;
+      border-radius: 999px;
+      transition: color 160ms ease, transform 160ms ease, font-weight 160ms ease;
       transform-origin: center;
-      font-weight: 600;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
     .nav-links a::after {
       content: "";
@@ -93,7 +109,6 @@
     .nav-links a.active {
       color: var(--text);
       font-weight: 700;
-      background: #efede9;
     }
     .nav-links a:hover::after,
     .nav-links a:focus-visible::after,
@@ -319,11 +334,12 @@
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top">victor ologun</a>
-      <nav class="nav-links">
-        <a href="#top" class="active">home</a>
-        <a href="#about">about</a>
-        <a href="#work" class="with-dot">work</a>
-        <a href="#contact">contact</a>
+      <nav class="nav-links" aria-label="Primary">
+        <span class="nav-pill" aria-hidden="true"></span>
+        <a href="#top" class="active" data-section="top">Home</a>
+        <a href="#about" data-section="about">About</a>
+        <a href="#work" class="with-dot" data-section="work">Work</a>
+        <a href="#contact" data-section="contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -536,5 +552,57 @@
       <p>Victor Ologun — personal website draft inspired by marco.fyi.</p>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector('.nav-links');
+      const pill = nav?.querySelector('.nav-pill');
+      const links = nav ? [...nav.querySelectorAll('a[data-section]')] : [];
+      const sections = links
+        .map((link) => document.getElementById(link.dataset.section))
+        .filter(Boolean);
+
+      if (!nav || !pill || !links.length) return;
+
+      const movePill = (link) => {
+        const navRect = nav.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
+        pill.style.width = `${linkRect.width}px`;
+        pill.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+      };
+
+      const setActive = (link) => {
+        links.forEach((item) => item.classList.toggle('active', item === link));
+        movePill(link);
+      };
+
+      const updateActiveFromScroll = () => {
+        const threshold = window.innerHeight * 0.28;
+        let current = links[0];
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            const match = links.find((link) => link.dataset.section === section.id);
+            if (match) current = match;
+          }
+        });
+
+        setActive(current);
+      };
+
+      links.forEach((link) => {
+        link.addEventListener('mouseenter', () => movePill(link));
+        link.addEventListener('focus', () => movePill(link));
+        link.addEventListener('click', () => setActive(link));
+      });
+
+      nav.addEventListener('mouseleave', updateActiveFromScroll);
+      window.addEventListener('scroll', updateActiveFromScroll, { passive: true });
+      window.addEventListener('resize', updateActiveFromScroll);
+      window.addEventListener('load', updateActiveFromScroll);
+      updateActiveFromScroll();
+    })();
+  </script>
 </body>
 </html>
