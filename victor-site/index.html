@@ -7,12 +7,12 @@
   <meta name="description" content="Victor Ologun — AI, cybersecurity, information systems, and cloud architecture." />
   <style>
     :root {
-      --bg: #f7f3ec;
+      --bg: #f6f1e8;
       --paper: #fffdf8;
-      --text: #141414;
-      --muted: #625d57;
-      --line: #ddd5ca;
-      --max: 1120px;
+      --text: #121212;
+      --muted: #655f58;
+      --line: #ddd4c8;
+      --max: 1040px;
       --radius: 28px;
     }
     * { box-sizing: border-box; }
@@ -22,7 +22,7 @@
       background: var(--bg);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
+      line-height: 1.42;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -33,7 +33,7 @@
       top: 0;
       z-index: 10;
       backdrop-filter: blur(14px);
-      background: rgba(247, 243, 236, 0.76);
+      background: rgba(246, 241, 232, 0.82);
       border-bottom: 1px solid rgba(20,20,20,0.05);
     }
     .nav-inner {
@@ -45,7 +45,7 @@
     }
     .brand { font-size: 1rem; font-weight: 700; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 1rem; color: var(--muted); font-size: 0.95rem; }
-    .hero { padding: 4.5rem 0 2rem; }
+    .hero { padding: 5.5rem 0 3rem; }
     .hero-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -59,16 +59,17 @@
     }
     h1, h2, h3, p { margin: 0; }
     h1 {
-      font-size: clamp(2.8rem, 8vw, 6.8rem);
-      line-height: 0.96;
-      letter-spacing: -0.065em;
-      max-width: 11ch;
+      font-size: clamp(3.1rem, 8vw, 7.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      max-width: 10ch;
       margin-bottom: 1.35rem;
     }
     .lead {
-      font-size: clamp(1.12rem, 2vw, 1.42rem);
-      max-width: 40ch;
+      font-size: clamp(1.08rem, 1.8vw, 1.32rem);
+      max-width: 38ch;
       letter-spacing: -0.02em;
+      color: #2c2a27;
     }
     .aside {
       border: 1px solid var(--line);
@@ -128,34 +129,40 @@
     .pill {
       display: inline-flex;
       align-items: center;
-      padding: 0.8rem 1rem;
+      padding: 0.78rem 1rem;
       border: 1px solid var(--line);
-      background: var(--paper);
+      background: rgba(255,255,255,0.62);
       border-radius: 999px;
       font-weight: 600;
+      transition: transform 140ms ease, background 140ms ease;
     }
-    .section { padding: 1.5rem 0 3rem; }
+    .pill:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.92);
+    }
+    .section { padding: 2.4rem 0 4.2rem; }
     .section-head {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 120px 1fr;
       gap: 1.5rem;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1.25rem;
     }
-    .label { color: var(--muted); font-size: 0.95rem; padding-top: 0.3rem; }
+    .label { color: var(--muted); font-size: 0.92rem; padding-top: 0.35rem; text-transform: lowercase; }
     .title {
-      font-size: clamp(1.65rem, 3vw, 2.8rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      max-width: 16ch;
+      font-size: clamp(1.85rem, 3vw, 3.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      max-width: 14ch;
       margin-bottom: 0.8rem;
     }
-    .copy { max-width: 62ch; color: var(--muted); font-size: 1.02rem; }
-    .beliefs { display: grid; gap: 0.8rem; margin-top: 1rem; }
+    .copy { max-width: 58ch; color: var(--muted); font-size: 1rem; }
+    .beliefs { display: grid; gap: 0; margin-top: 1rem; }
     .belief {
-      padding: 1.05rem 0;
+      padding: 1.15rem 0;
       border-top: 1px solid var(--line);
-      font-size: clamp(1.16rem, 2vw, 1.58rem);
-      letter-spacing: -0.03em;
+      font-size: clamp(1.22rem, 2vw, 1.72rem);
+      letter-spacing: -0.038em;
+      max-width: 34ch;
     }
     .belief:last-child { border-bottom: 1px solid var(--line); }
     .cards {
@@ -165,7 +172,7 @@
       margin-top: 1rem;
     }
     .card {
-      background: var(--paper);
+      background: rgba(255,255,255,0.52);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 1.25rem;
@@ -213,7 +220,7 @@
     .list { display: grid; gap: 0; margin-top: 0.5rem; }
     .item {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 120px 1fr;
       gap: 1.2rem;
       padding: 1rem 0;
       border-top: 1px solid var(--line);
@@ -249,12 +256,11 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="eyebrow">AI, cybersecurity, information systems, and cloud architecture.</p>
-          <h1>i build and study systems that need to work in the real world.</h1>
+          <p class="eyebrow">Victor Ologun — AI, cybersecurity, information systems, and cloud architecture.</p>
+          <h1>i build and study digital systems that need to hold up in the real world.</h1>
           <p class="lead">
-            i’m Victor Ologun. my work sits at the edge of <strong>intelligent systems</strong>,
-            <strong>secure digital infrastructure</strong>, <strong>information systems research</strong>, and
-            <strong>cloud-enabled products</strong>.
+            i work across <strong>artificial intelligence</strong>, <strong>cybersecurity</strong>,
+            <strong>information systems research</strong>, and <strong>cloud infrastructure</strong> — with a focus on making complex systems useful, reliable, and trustworthy.
           </p>
           <div class="links-row">
             <a class="pill" href="mailto:ologunv@gmail.com">email</a>
@@ -269,7 +275,7 @@
             <img src="assets/portrait.jpg" alt="Portrait of Victor Ologun" />
             <div class="portrait-note">
               <strong>Victor Ologun</strong>
-              building at the intersection of AI, cybersecurity, and cloud systems.
+              researching and building systems shaped by trust, risk, and real-world constraints.
             </div>
           </div>
           <div class="aside">
@@ -285,19 +291,18 @@
         <div class="section-head">
           <div class="label">about</div>
           <div>
-            <h2 class="title">a calm, direct home on the internet.</h2>
+            <h2 class="title">a quiet place to collect what i’m working on.</h2>
             <p class="copy">
-              this site is intentionally simple. the goal is not to look busy. it is to make your work legible:
-              what you study, what you build, and what kinds of systems you care about improving.
+              this site is intentionally spare. i want the work to read clearly: what i’m studying, what i’m building, and the kinds of technical systems i keep returning to.
             </p>
           </div>
         </div>
 
         <div class="beliefs">
-          <div class="belief">i think useful systems should be both intelligent and trustworthy.</div>
-          <div class="belief">i think security should be built in early, not patched on later.</div>
-          <div class="belief">i think research matters most when it helps real decisions.</div>
-          <div class="belief">i think cloud infrastructure should feel quiet, stable, and dependable.</div>
+          <div class="belief">i think useful systems should be intelligent, dependable, and easy to trust.</div>
+          <div class="belief">i think security works best when it is designed in early, not patched in later.</div>
+          <div class="belief">i think research matters most when it clarifies real decisions and real outcomes.</div>
+          <div class="belief">i think infrastructure should feel quiet: stable when things are calm, resilient when they are not.</div>
         </div>
       </div>
     </section>
@@ -307,9 +312,9 @@
         <div class="section-head">
           <div class="label">work</div>
           <div>
-            <h2 class="title">the kinds of problems i like working on.</h2>
+            <h2 class="title">the kinds of problems i keep coming back to.</h2>
             <p class="copy">
-              not portfolio case studies in the usual sense. more like a map of the domains and system questions i keep returning to.
+              not a traditional portfolio. more a map of the systems, questions, and domains i care enough about to keep revisiting.
             </p>
           </div>
         </div>
@@ -377,7 +382,7 @@
           <div>
             <h2 class="title">selected research directions.</h2>
             <p class="copy">
-              a concise snapshot of public-facing themes in your current work. this can be refined later with exact paper titles, abstracts, and links.
+              a short view into the themes shaping my research right now. this section can evolve into papers, abstracts, and links over time.
             </p>
           </div>
         </div>
@@ -420,8 +425,8 @@
         <div class="section-head">
           <div class="label">contact</div>
           <div>
-            <h2 class="title">find me on the internet.</h2>
-            <p class="copy">email is the best way to reach me. i’m also active across the research and professional platforms below.</p>
+            <h2 class="title">say hello.</h2>
+            <p class="copy">email is the simplest way to reach me. you can also find my work and profiles below.</p>
           </div>
         </div>
         <div class="list">
