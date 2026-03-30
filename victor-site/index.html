@@ -124,29 +124,20 @@
     .hero { padding: 5.5rem 0 3rem; }
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.8fr);
-      grid-template-areas:
-        "eyebrow portrait"
-        "headline portrait"
-        "lead aside"
-        "links aside";
-      gap: 1rem 1.8rem;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
       align-items: start;
     }
     .hero-copy {
-      display: contents;
+      display: grid;
+      gap: 1rem;
     }
-    .hero-copy .eyebrow { grid-area: eyebrow; }
     .headline-box {
-      grid-area: headline;
       background: var(--dark-box);
       border: 1px solid rgba(17,17,17,0.05);
       border-radius: 36px;
-      padding: 1.45rem 1.5rem 1.2rem;
+      padding: 1.5rem 1.4rem 1.35rem;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
-      min-height: 420px;
-      display: flex;
-      align-items: flex-start;
     }
     .eyebrow {
       color: var(--muted);
@@ -162,37 +153,28 @@
       margin-bottom: 1.35rem;
     }
     .lead {
-      grid-area: lead;
-      font-size: clamp(1.06rem, 1.7vw, 1.22rem);
-      max-width: 36ch;
+      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+      max-width: 40ch;
       letter-spacing: -0.02em;
       color: #3e3b37;
-      padding-left: 0.15rem;
     }
     .aside {
-      grid-area: aside;
-      align-self: end;
       border: 1px solid var(--line);
       background: var(--soft);
       border-radius: 24px;
       padding: 1.15rem 1.2rem;
       color: var(--muted);
       font-size: 0.98rem;
-      max-width: 28ch;
     }
     .hero-stack {
       display: grid;
-      grid-template-areas:
-        "portrait"
-        "aside";
       gap: 1rem;
-      align-items: start;
+      align-items: end;
     }
     .portrait-card {
-      grid-area: portrait;
       position: relative;
       overflow: hidden;
-      border-radius: 30px;
+      border-radius: 28px;
       border: 1px solid rgba(20,20,20,0.08);
       background: linear-gradient(180deg, #efe7dc 0%, #e7ddd0 100%);
       aspect-ratio: 4 / 5;
@@ -226,12 +208,10 @@
       font-size: 0.98rem;
     }
     .links-row {
-      grid-area: links;
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
-      margin-top: 0.25rem;
-      align-items: center;
+      margin-top: 2rem;
     }
     .pill {
       display: inline-flex;
@@ -247,12 +227,12 @@
       transform: translateY(-1px);
       background: rgba(255,255,255,0.92);
     }
-    .section { padding: 2.8rem 0 4.4rem; }
+    .section { padding: 2.4rem 0 4.2rem; }
     .section-head {
       display: grid;
-      grid-template-columns: 110px minmax(0, 1fr);
+      grid-template-columns: 120px 1fr;
       gap: 1.5rem;
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.25rem;
     }
     .label { color: var(--muted); font-size: 0.92rem; padding-top: 0.35rem; text-transform: lowercase; }
     .title {
@@ -274,21 +254,9 @@
     .belief:last-child { border-bottom: 1px solid var(--line); }
     .cards {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       margin-top: 1rem;
-    }
-    .card:nth-child(1) {
-      transform: translateY(0.2rem);
-    }
-    .card:nth-child(2) {
-      transform: translateY(2.2rem);
-    }
-    .card:nth-child(3) {
-      transform: translateY(-0.6rem);
-    }
-    .card:nth-child(4) {
-      transform: translateY(1.4rem);
     }
     .card {
       background: #f0eeea;
@@ -337,10 +305,6 @@
     }
     .card p { color: var(--muted); font-size: 1rem; }
     .list { display: grid; gap: 0; margin-top: 0.5rem; }
-    .section .container > .list {
-      max-width: 860px;
-      margin-left: 7rem;
-    }
     .item {
       display: grid;
       grid-template-columns: 120px 1fr;
@@ -354,23 +318,7 @@
     .muted { color: var(--muted); }
     .footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
     @media (max-width: 900px) {
-      .hero-grid,
-      .cards,
-      .section-head,
-      .item,
-      .section .container > .list {
-        grid-template-columns: 1fr;
-        margin-left: 0;
-      }
-      .hero-grid {
-        grid-template-areas:
-          "eyebrow"
-          "headline"
-          "portrait"
-          "lead"
-          "links"
-          "aside";
-      }
+      .hero-grid, .cards, .section-head, .item { grid-template-columns: 1fr; }
       .nav {
         top: 0.75rem;
       }
@@ -391,10 +339,7 @@
       .nav-links::-webkit-scrollbar { display: none; }
       h1 { max-width: 100%; }
       .hero { padding-top: 3.5rem; }
-      .headline-box { border-radius: 28px; padding: 1.25rem 1.15rem 1.15rem; min-height: auto; }
-      .lead { max-width: 100%; padding-left: 0; }
-      .aside { max-width: 100%; }
-      .card:nth-child(n) { transform: none; }
+      .headline-box { border-radius: 28px; padding: 1.25rem 1.15rem 1.15rem; }
       .portrait-card { min-height: 360px; max-width: 520px; }
     }
   </style>
