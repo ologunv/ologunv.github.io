@@ -131,6 +131,7 @@
     .hero-copy {
       display: grid;
       gap: 1rem;
+      align-self: start;
     }
     .headline-box {
       background: var(--dark-box);
@@ -138,6 +139,7 @@
       border-radius: 36px;
       padding: 1.5rem 1.4rem 1.35rem;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+      margin-top: 0;
     }
     .eyebrow {
       color: var(--muted);
@@ -169,7 +171,9 @@
     .hero-stack {
       display: grid;
       gap: 1rem;
-      align-items: end;
+      align-items: start;
+      align-self: start;
+      padding-top: 2.35rem;
     }
     .portrait-card {
       position: relative;
