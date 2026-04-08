@@ -74,7 +74,7 @@
       top: var(--nav-pad);
       left: var(--nav-pad);
       height: calc(100% - (var(--nav-pad) * 2));
-      width: calc((100% - (var(--nav-pad) * 2)) / 4);
+      width: calc((100% - (var(--nav-pad) * 2)) / 5);
       border-radius: 999px;
       background: #e8e8e8;
       box-shadow: none;
@@ -117,15 +117,21 @@
     }
     .hero { padding: 5.5rem 0 3rem; }
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 2rem;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
     }
     .hero-copy {
       display: grid;
       gap: 1rem;
-      align-self: start;
+      align-self: center;
+      width: 100%;
+      max-width: 680px;
+      text-align: center;
+    }
+    .hero-copy .lead {
+      margin: 0 auto;
     }
     .headline-box {
       background: #f7f7f9;
@@ -134,6 +140,14 @@
       padding: 1.5rem 1.4rem 1.35rem;
       box-shadow: none;
       margin-top: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .headline-box h1 {
+      max-width: 100%;
+      margin-bottom: 0;
     }
     .eyebrow {
       color: var(--muted);
@@ -147,6 +161,9 @@
       letter-spacing: -0.065em;
       max-width: 13ch;
       margin-bottom: 1.35rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
     .lead {
       font-size: clamp(1.08rem, 1.8vw, 1.28rem);
@@ -166,8 +183,10 @@
       display: grid;
       gap: 1rem;
       align-items: start;
-      align-self: start;
+      align-self: center;
       padding-top: 0;
+      width: 100%;
+      max-width: 480px;
     }
     .portrait-card {
       position: relative;
@@ -225,22 +244,26 @@
       transform: translateY(-1px);
       background: rgba(255,255,255,0.92);
     }
-    .section { padding: 2.4rem 0 4.2rem; }
+    .section { padding: 1.5rem 0 2rem; }
     .section-head {
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       margin-bottom: 1.25rem;
     }
-    .label { color: var(--muted); font-size: 0.92rem; padding-top: 0.35rem; text-transform: lowercase; }
+    .label { color: #c0bdb9; font-size: 0.92rem; padding-top: 0; margin-bottom: 0.5rem; text-transform: lowercase; letter-spacing: 0.06em; }
     .title {
       font-size: clamp(1.85rem, 3vw, 3.1rem);
       line-height: 0.98;
       letter-spacing: -0.055em;
       max-width: 14ch;
       margin-bottom: 0.8rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
-    .copy { max-width: 58ch; color: var(--muted); font-size: 1rem; }
+    .copy { max-width: 58ch; color: var(--muted); font-size: 1rem; text-align: center; margin-left: auto; margin-right: auto; }
     .beliefs { display: grid; gap: 0; margin-top: 1rem; }
     .belief {
       padding: 1.15rem 0;
@@ -305,7 +328,7 @@
     .list { display: grid; gap: 0; margin-top: 0.5rem; }
     .item {
       display: grid;
-      grid-template-columns: 120px 1fr;
+      grid-template-columns: 100px 1fr;
       gap: 1.2rem;
       padding: 1rem 0;
       border-top: 1px solid var(--line);
@@ -315,8 +338,45 @@
     .item h3 { font-size: 1.15rem; margin-bottom: 0.38rem; letter-spacing: -0.03em; }
     .muted { color: var(--muted); }
     .footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .stack-group {
+      background: #f7f7f9;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.3rem;
+    }
+    .stack-group-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .stack-items {
+      display: grid;
+      gap: 0;
+    }
+    .stack-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.97rem;
+    }
+    .stack-item:first-child { border-top: none; }
+    .stack-item-name { font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+    .stack-item-desc { color: var(--muted); font-size: 0.88rem; }
     @media (max-width: 900px) {
-      .hero-grid, .cards, .section-head, .item { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .cards, .section-head, .item { grid-template-columns: 1fr; }
       .nav {
         top: 0.75rem;
       }
@@ -351,8 +411,9 @@
         <span class="nav-pill" aria-hidden="true"></span>
         <a href="#top" class="active" data-section="top" data-index="0">Home</a>
         <a href="#about" data-section="about" data-index="1">About</a>
-        <a href="#work" data-section="work" data-index="2">Work</a>
-        <a href="#contact" data-section="contact" data-index="3">Contact</a>
+        <a href="#stack" data-section="stack" data-index="2">Stack</a>
+        <a href="#research" data-section="research" data-index="3">Research</a>
+        <a href="#contact" data-section="contact" data-index="4">Contact</a>
       </nav>
     </div>
   </header>
@@ -373,13 +434,9 @@
             <img src="assets/portrait.jpg" alt="Portrait of Victor Ologun" />
             <div class="portrait-note">
               <strong>Victor Ologun</strong>
-              researching and building systems shaped by trust, risk, and real-world constraints.
             </div>
           </div>
-          <div class="aside">
-            a minimal personal site inspired by the editorial feel of marco.fyi — adapted for your work,
-            research, and technical interests.
-          </div>
+
         </div>
       </div>
     </section>
@@ -389,77 +446,150 @@
         <div class="section-head">
           <div class="label">about</div>
           <div>
-            <h2 class="title">a quiet place to collect what i’m working on.</h2>
+            <h2 class="title">Welcome to my world!</h2>
             <p class="copy">
-              this site is intentionally spare. i want the work to read clearly: what i’m studying, what i’m building, and the kinds of technical systems i keep returning to.
+              I build AI systems that think, act, and get things done. Agents that take initiative, automate workflows, and make decisions that actually move things forward.
+
+              Some say AGI is here, others say it's almost here, yet some say AGI cannot be achieved. For me, AGI is the logical next version of what we're already building.
+
+              Until then? One focus: building AI workflows that are useful. 😊
             </p>
           </div>
         </div>
 
-        <div class="beliefs">
-          <div class="belief">i think useful systems should be intelligent, dependable, and easy to trust.</div>
-          <div class="belief">i think security works best when it is designed in early, not patched in later.</div>
-          <div class="belief">i think research matters most when it clarifies real decisions and real outcomes.</div>
-          <div class="belief">i think infrastructure should feel quiet: stable when things are calm, resilient when they are not.</div>
+
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">stack</div>
+          <div>
+            <h2 class="title">Tools I actually use.</h2>
+            <p class="copy">the hardware, software, and services that power my daily work in AI, research, and systems building.</p>
+          </div>
+        </div>
+
+        <div class="stack-grid">
+
+          <div class="stack-group">
+            <div class="stack-group-label">AI &amp; Agents</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Hermes</span>
+                <span class="stack-item-desc">personal multi-agent orchestration</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Claude</span>
+                <span class="stack-item-desc">primary reasoning model</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Gemma 4</span>
+                <span class="stack-item-desc">local inference on Apple Silicon</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">llama.cpp</span>
+                <span class="stack-item-desc">GGUF model serving</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">x-cli</span>
+                <span class="stack-item-desc">X/Twitter automation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-group">
+            <div class="stack-group-label">Dev &amp; Infrastructure</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Python</span>
+                <span class="stack-item-desc">primary language</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Flask</span>
+                <span class="stack-item-desc">lightweight web backend</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">SQLite</span>
+                <span class="stack-item-desc">session and state storage</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">GitHub</span>
+                <span class="stack-item-desc">version control and CI</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Telegram Bot API</span>
+                <span class="stack-item-desc">agent communication layer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-group">
+            <div class="stack-group-label">Hardware &amp; OS</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Mac Mini M-series</span>
+                <span class="stack-item-desc">always-on home server</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">macOS</span>
+                <span class="stack-item-desc">primary operating system</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Obsidian</span>
+                <span class="stack-item-desc">notes and research vault</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Browserbase</span>
+                <span class="stack-item-desc">headless browser automation</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">DuckDuckGo</span>
+                <span class="stack-item-desc">privacy-first web search</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="work">
+    <section class="section" id="research">
       <div class="container">
         <div class="section-head">
-          <div class="label">work</div>
+          <div class="label">research</div>
           <div>
-            <h2 class="title">the kinds of problems i keep coming back to.</h2>
+            <h2 class="title">Where my thinking lives.</h2>
             <p class="copy">
-              not a traditional portfolio. more a map of the systems, questions, and domains i care enough about to keep revisiting.
+              These are the research areas I keep returning to because they matter, and the questions in them are nowhere near settled.
             </p>
           </div>
         </div>
 
         <div class="cards">
-          <article class="card">
-            <div class="visual dark" style="background:none; border:none;">
-              <img src="assets/ai-research.jpg" alt="AI systems illustration" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:22px;" />
-            </div>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
             <div class="tag">01 / AI systems</div>
-            <h3>applying AI where trust, risk, and operational accuracy matter.</h3>
-            <p>i’m interested in AI systems that support real decisions: fraud detection, intelligent analysis, workflow automation, and systems that improve outcomes without adding noise.</p>
+            <h3>Applying AI where trust, risk, and operational accuracy matter.</h3>
+            <p>AI agents that support real decisions: fraud detection, workflow automation, systems that improve outcomes without adding noise.</p>
           </article>
 
-          <article class="card">
-            <div class="visual blue" style="background:none; border:none;">
-              <img src="assets/cybersecurity.jpg" alt="Cybersecurity illustration" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:22px;" />
-            </div>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
             <div class="tag">02 / cybersecurity</div>
-            <h3>understanding how security shapes confidence, behavior, and adoption.</h3>
-            <p>cybersecurity is not only technical. it changes how people trust systems, how organizations respond to risk, and how digital products succeed or fail.</p>
+            <h3>Security shapes confidence, behavior, and adoption.</h3>
+            <p>Security isn't just technical. It shapes whether people trust a system and whether products survive contact with the real world.</p>
           </article>
 
-          <article class="card">
-            <div class="visual green">
-              <div class="mock">
-                <div class="line"></div>
-                <div class="grid"><div class="box"></div><div class="box"></div></div>
-                <div class="line small"></div>
-              </div>
-            </div>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
             <div class="tag">03 / information systems</div>
-            <h3>studying the systems behind digital transformation.</h3>
-            <p>i’m drawn to adoption, usability, governance, and the question of how technology creates measurable outcomes inside institutions and markets.</p>
+            <h3>The systems behind digital transformation.</h3>
+            <p>Adoption, usability, governance. How technology creates measurable outcomes inside institutions and markets.</p>
           </article>
 
-          <article class="card">
-            <div class="visual">
-              <div class="mock">
-                <div class="line"></div>
-                <div class="grid"><div class="box"></div><div class="box"></div></div>
-                <div class="line small"></div>
-              </div>
-            </div>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
             <div class="tag">04 / cloud architecture</div>
-            <h3>building infrastructure that scales quietly and holds up under pressure.</h3>
-            <p>i care about resilient systems, sensible architecture choices, and cloud foundations that make products easier to secure, maintain, and extend.</p>
+            <h3>Infrastructure that scales quietly and holds up under pressure.</h3>
+            <p>Resilient architecture choices and cloud foundations that make products easier to secure, maintain, and extend.</p>
           </article>
         </div>
       </div>
@@ -470,17 +600,17 @@
         <div class="section-head">
           <div class="label">contact</div>
           <div>
-            <h2 class="title">say hello.</h2>
-            <p class="copy">email is the simplest way to reach me. you can also find my work and profiles below.</p>
+            <h2 class="title">Say hello.</h2>
+
           </div>
         </div>
         <div class="list">
-          <div class="links-row" style="margin-top:0; margin-bottom: 1.5rem;">
-            <a class="pill" href="mailto:ologunv@gmail.com">email</a>
-            <a class="pill" href="assets/victor-ologun-resume.pdf" target="_blank" rel="noreferrer">resume</a>
-            <a class="pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin</a>
-            <a class="pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar</a>
-            <a class="pill" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">orcid</a>
+          <div class="links-row" style="margin-top:0; margin-bottom: 1.5rem; justify-content: center;">
+            <a class="pill" href="mailto:ologunv@gmail.com">Email</a>
+            <a class="pill" href="assets/victor-ologun-resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a class="pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="pill" href="https://x.com/VictorOlogun3" target="_blank" rel="noreferrer">Twitter</a>
+            <a class="pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
           </div>
 
         </div>
@@ -490,7 +620,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p>Victor Ologun — personal website draft inspired by marco.fyi.</p>
+      <p>Victor Ologun</p>
     </div>
   </footer>
 
