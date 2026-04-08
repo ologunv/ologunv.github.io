@@ -7,17 +7,16 @@
   <meta name="description" content="Victor Ologun — AI, cybersecurity, information systems, and cloud architecture." />
   <style>
     :root {
-      --bg: #f6f3ee;
-      --paper: #fffdf9;
-      --text: #171717;
-      --muted: #5e5a56;
-      --line: #dfd8cf;
-      --accent: #111111;
-      --soft: #ece6dd;
-      --max: 1100px;
+      --bg: #ffffff;
+      --paper: #f8fafc;
+      --text: #333333;
+      --muted: #727272;
+      --line: #e9e9eb;
+      --soft: #f2f2f2;
+      --dark-box: #e9e4dc;
+      --max: 1040px;
       --radius: 28px;
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -25,298 +24,382 @@
       background: var(--bg);
       color: var(--text);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.45;
+      line-height: 1.42;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-
     a { color: inherit; text-decoration: none; }
     .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
-
     .nav {
       position: sticky;
-      top: 0;
+      top: 1rem;
       z-index: 20;
-      backdrop-filter: blur(12px);
-      background: rgba(246, 243, 238, 0.72);
-      border-bottom: 1px solid rgba(23,23,23,0.04);
+      padding: 0 0 1.2rem;
     }
-
     .nav-inner {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 1rem 0;
-      gap: 1rem;
+      padding: 0;
     }
-
     .brand {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      font-size: 1rem;
     }
-
     .nav-links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.96rem;
-      color: var(--muted);
+      --nav-pad: 0.36rem;
+      position: relative;
+      display: inline-grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      align-items: center;
+      gap: 0;
+      padding: var(--nav-pad);
+      min-width: 400px;
+      color: #afb0b3;
+      font-size: 0.93rem;
+      background: #ffffff;
+      border: none;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+      backdrop-filter: none;
     }
-
-    .hero {
-      padding: 4.5rem 0 2.25rem;
+    .nav-pill {
+      position: absolute;
+      top: var(--nav-pad);
+      left: var(--nav-pad);
+      height: calc(100% - (var(--nav-pad) * 2));
+      width: calc((100% - (var(--nav-pad) * 2)) / 5);
+      border-radius: 999px;
+      background: #e8e8e8;
+      box-shadow: none;
+      transition: none;
+      z-index: 0;
+      pointer-events: none;
     }
-
-    .kicker {
-      font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 1.25rem;
-    }
-
-    h1, h2, h3, p { margin: 0; }
-
-    h1 {
-      font-size: clamp(2.6rem, 7vw, 6.6rem);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
-      max-width: 12ch;
-      margin-bottom: 1.5rem;
-    }
-
-    .intro {
-      font-size: clamp(1.15rem, 2vw, 1.45rem);
-      color: var(--text);
-      max-width: 38ch;
-      letter-spacing: -0.02em;
-    }
-
-    .muted {
-      color: var(--muted);
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
-      align-items: end;
-    }
-
-    .hero-note {
-      padding: 1.2rem 1.25rem;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.45);
-      color: var(--muted);
-      font-size: 0.98rem;
-    }
-
-    .links-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 2rem;
-    }
-
-    .link-pill {
+    .nav-links a {
+      position: relative;
+      z-index: 1;
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.8rem 1rem;
+      justify-content: center;
+      gap: 0.4rem;
+      width: 100%;
+      min-width: 0;
+      padding: 0.78rem 1.1rem;
       border-radius: 999px;
-      background: var(--paper);
-      border: 1px solid var(--line);
-      color: var(--text);
-      font-weight: 600;
+      transition: color 160ms ease, font-weight 160ms ease;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
-
-    .section {
-      padding: 1.5rem 0 3rem;
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: #555555;
     }
-
-    .section-head {
+    .nav-links a.active {
+      color: #333333;
+      font-weight: 650;
+    }
+    .nav-links a[data-section="work"]::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff4141;
+      flex-shrink: 0;
+    }
+    .hero { padding: 5.5rem 0 3rem; }
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .hero-copy {
       display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 1.5rem;
+      gap: 1rem;
+      align-self: center;
+      width: 100%;
+      max-width: 680px;
+      text-align: center;
+    }
+    .hero-copy .lead {
+      margin: 0 auto;
+    }
+    .headline-box {
+      background: #f7f7f9;
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 36px;
+      padding: 1.5rem 1.4rem 1.35rem;
+      box-shadow: none;
+      margin-top: 0;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .headline-box h1 {
+      max-width: 100%;
+      margin-bottom: 0;
+    }
+    .eyebrow {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 0.25rem;
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: clamp(2.17rem, 5.6vw, 5.32rem);
+      line-height: 0.94;
+      letter-spacing: -0.065em;
+      max-width: 13ch;
+      margin-bottom: 1.35rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .lead {
+      font-size: clamp(1.08rem, 1.8vw, 1.28rem);
+      max-width: 40ch;
+      letter-spacing: -0.02em;
+      color: #555555;
+    }
+    .aside {
+      border: 1px solid rgba(0,0,0,0.06);
+      background: #f8ebd4;
+      border-radius: 24px;
+      padding: 1.15rem 1.2rem;
+      color: #8a7a68;
+      font-size: 0.98rem;
+    }
+    .hero-stack {
+      display: grid;
+      gap: 1rem;
       align-items: start;
+      align-self: center;
+      padding-top: 0;
+      width: 100%;
+      max-width: 480px;
+    }
+    .portrait-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: #f7f7f9;
+      aspect-ratio: 4 / 5;
+      min-height: 420px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .portrait-note {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 1rem;
+      padding: 0.9rem 1rem;
+      border-radius: 18px;
+      background: rgba(255, 253, 248, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(20,20,20,0.06);
+      color: #3c3834;
+      font-size: 0.95rem;
+    }
+    .portrait-note strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+    .links-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.78rem 1rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.62);
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 140ms ease, background 140ms ease;
+    }
+    .pill:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.92);
+    }
+    .section { padding: 1.5rem 0 2rem; }
+    .section-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       margin-bottom: 1.25rem;
     }
-
-    .section-label {
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding-top: 0.3rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.8rem);
-      line-height: 1.02;
-      letter-spacing: -0.05em;
-      max-width: 16ch;
+    .label { color: #c0bdb9; font-size: 0.92rem; padding-top: 0; margin-bottom: 0.5rem; text-transform: lowercase; letter-spacing: 0.06em; }
+    .title {
+      font-size: clamp(1.85rem, 3vw, 3.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      max-width: 14ch;
       margin-bottom: 0.8rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
-
-    .section-copy {
-      max-width: 60ch;
-      color: var(--muted);
-      font-size: 1.02rem;
-    }
-
-    .beliefs {
-      display: grid;
-      gap: 0.8rem;
-      margin-top: 1rem;
-    }
-
+    .copy { max-width: 58ch; color: var(--muted); font-size: 1rem; text-align: center; margin-left: auto; margin-right: auto; }
+    .beliefs { display: grid; gap: 0; margin-top: 1rem; }
     .belief {
-      padding: 1.1rem 0;
+      padding: 1.15rem 0;
       border-top: 1px solid var(--line);
-      font-size: clamp(1.15rem, 2.1vw, 1.6rem);
-      letter-spacing: -0.03em;
+      font-size: clamp(1.22rem, 2vw, 1.72rem);
+      letter-spacing: -0.038em;
+      max-width: 34ch;
     }
-
-    .belief:last-child {
-      border-bottom: 1px solid var(--line);
-    }
-
+    .belief:last-child { border-bottom: 1px solid var(--line); }
     .cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
       margin-top: 1rem;
     }
-
     .card {
-      background: var(--paper);
+      background: #f7f7f9;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 1.25rem;
-      overflow: hidden;
     }
-
-    .card-visual {
+    .visual {
       aspect-ratio: 16 / 10;
       border-radius: 22px;
       margin-bottom: 1rem;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06), transparent 30%),
-        linear-gradient(135deg, #e9e0d3, #f8f4ee 55%, #ddd3c6);
-      border: 1px solid rgba(23,23,23,0.05);
+      border: 1px solid rgba(20,20,20,0.05);
       position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ebe2d7, #f7f3ec 55%, #ddd2c4);
     }
-
-    .card-visual.dark {
-      background:
-        radial-gradient(circle at 75% 25%, rgba(124,156,255,0.25), transparent 20%),
-        linear-gradient(135deg, #111827, #182238 50%, #0d1321);
-    }
-
-    .card-visual.blue {
-      background:
-        radial-gradient(circle at 25% 20%, rgba(86,224,197,0.25), transparent 22%),
-        linear-gradient(135deg, #dbeafe, #eff6ff 50%, #cbd5e1);
-    }
-
-    .card-visual.green {
-      background:
-        radial-gradient(circle at 70% 25%, rgba(52,211,153,0.22), transparent 20%),
-        linear-gradient(135deg, #e7f8ef, #f7fcf8 50%, #d6f1e2);
-    }
-
-    .mini-ui {
+    .visual.dark { background: linear-gradient(135deg, #111827, #1c2942 52%, #0d1320); }
+    .visual.blue { background: linear-gradient(135deg, #dbeafe, #eff6ff 55%, #cbd5e1); }
+    .visual.green { background: linear-gradient(135deg, #e6f8ee, #f5fbf7 55%, #d4efdf); }
+    .mock {
       position: absolute;
       inset: 18px;
       border-radius: 18px;
-      border: 1px solid rgba(23,23,23,0.08);
-      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(20,20,20,0.08);
+      background: rgba(255,255,255,0.58);
       padding: 1rem;
       display: grid;
       gap: 0.7rem;
     }
-
-    .dark .mini-ui {
+    .visual.dark .mock {
       background: rgba(255,255,255,0.06);
       border-color: rgba(255,255,255,0.12);
     }
-
-    .ui-line, .ui-box {
-      border-radius: 999px;
-      background: rgba(23,23,23,0.08);
-    }
-
-    .dark .ui-line, .dark .ui-box {
-      background: rgba(255,255,255,0.14);
-    }
-
-    .ui-line { height: 10px; width: 48%; }
-    .ui-line.small { width: 28%; }
-    .ui-box { height: 100%; min-height: 70px; border-radius: 16px; }
-    .ui-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0.7rem; flex: 1; }
-
-    .card-tag {
-      font-size: 0.93rem;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-
+    .line, .box { background: rgba(20,20,20,0.08); border-radius: 999px; }
+    .visual.dark .line, .visual.dark .box { background: rgba(255,255,255,0.14); }
+    .line { height: 10px; width: 48%; }
+    .line.small { width: 30%; }
+    .grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 0.7rem; flex: 1; }
+    .box { min-height: 76px; border-radius: 16px; }
+    .tag { color: var(--muted); font-size: 0.93rem; margin-bottom: 0.35rem; }
     .card h3 {
       font-size: clamp(1.2rem, 2vw, 1.7rem);
       line-height: 1.05;
       letter-spacing: -0.04em;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
     }
-
-    .card p {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 55ch;
-    }
-
-    .list {
+    .card p { color: var(--muted); font-size: 1rem; }
+    .list { display: grid; gap: 0; margin-top: 0.5rem; }
+    .item {
       display: grid;
-      gap: 0;
-      margin-top: 0.5rem;
-    }
-
-    .list-item {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 1.25rem;
+      grid-template-columns: 100px 1fr;
+      gap: 1.2rem;
       padding: 1rem 0;
       border-top: 1px solid var(--line);
     }
-
-    .list-item:last-child {
-      border-bottom: 1px solid var(--line);
+    .item:last-child { border-bottom: 1px solid var(--line); }
+    .meta { color: var(--muted); font-size: 0.95rem; }
+    .item h3 { font-size: 1.15rem; margin-bottom: 0.38rem; letter-spacing: -0.03em; }
+    .muted { color: var(--muted); }
+    .footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.95rem; }
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
     }
-
-    .list-meta {
+    .stack-group {
+      background: #f7f7f9;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.3rem;
+    }
+    .stack-group-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--muted);
-      font-size: 0.95rem;
+      margin-bottom: 1rem;
     }
-
-    .list-item h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.4rem;
-      letter-spacing: -0.03em;
+    .stack-items {
+      display: grid;
+      gap: 0;
     }
-
-    .footer {
-      padding: 2rem 0 3rem;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .stack-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.65rem 0;
+      border-top: 1px solid var(--line);
+      font-size: 0.97rem;
     }
-
+    .stack-item:first-child { border-top: none; }
+    .stack-item-name { font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
+    .stack-item-desc { color: var(--muted); font-size: 0.88rem; }
     @media (max-width: 900px) {
-      .split,
-      .cards,
-      .section-head,
-      .list-item {
-        grid-template-columns: 1fr;
+      .stack-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .cards, .section-head, .item { grid-template-columns: 1fr; }
+      .nav {
+        top: 0.75rem;
       }
-
-      .nav-links { display: none; }
-      .section-label { padding-top: 0; }
+      .nav-inner {
+        justify-content: center;
+      }
+      .brand {
+        position: static;
+        transform: none;
+        display: none;
+      }
+      .nav-links {
+        min-width: 0;
+        width: min(100%, calc(100vw - 2rem));
+        overflow-x: auto;
+        justify-content: flex-start;
+        scrollbar-width: none;
+      }
+      .nav-links::-webkit-scrollbar { display: none; }
       h1 { max-width: 100%; }
+      .hero { padding-top: 3.5rem; }
+      .headline-box { border-radius: 28px; padding: 1.25rem 1.15rem 1.15rem; }
+      .portrait-card { min-height: 360px; max-width: 520px; }
     }
   </style>
 </head>
@@ -324,35 +407,36 @@
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#top">victor ologun</a>
-      <nav class="nav-links">
-        <a href="#about">about</a>
-        <a href="#work">work</a>
-        <a href="#writing">research</a>
-        <a href="#contact">contact</a>
+      <nav class="nav-links" aria-label="Primary">
+        <span class="nav-pill" aria-hidden="true"></span>
+        <a href="#top" class="active" data-section="top" data-index="0">Home</a>
+        <a href="#about" data-section="about" data-index="1">About</a>
+        <a href="#stack" data-section="stack" data-index="2">Stack</a>
+        <a href="#research" data-section="research" data-index="3">Research</a>
+        <a href="#contact" data-section="contact" data-index="4">Contact</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container split">
-        <div>
-          <p class="kicker">AI, cybersecurity, information systems, and cloud architecture.</p>
-          <h1>i build and study systems that need to work in the real world.</h1>
-          <p class="intro">
-            i’m Victor Ologun. my interests sit at the edge of <strong>intelligent systems</strong>,
-            <strong>secure digital infrastructure</strong>, <strong>cloud-enabled products</strong>, and
-            <strong>technology adoption</strong>.
-          </p>
-          <div class="links-row">
-            <a class="link-pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin</a>
-            <a class="link-pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar</a>
-            <a class="link-pill" href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">orcid</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="headline-box">
+            <h1>Systems thinker. Builder. Researcher.</h1>
           </div>
+          <p class="lead">
+            I work at the intersection of <strong>AI</strong>, <strong>cybersecurity</strong>, and <strong>cloud systems</strong> — studying how digital infrastructure holds up when it matters most.
+          </p>
         </div>
-        <div class="hero-note">
-          built from public signals i could verify: a linkedin profile result tied to Le Moyne College,
-          plus scholar records around AI, cybersecurity, digital banking, and applied information systems.
+        <div class="hero-stack">
+          <div class="portrait-card">
+            <img src="assets/portrait.jpg" alt="Portrait of Victor Ologun" />
+            <div class="portrait-note">
+              <strong>Victor Ologun</strong>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -360,158 +444,152 @@
     <section class="section" id="about">
       <div class="container">
         <div class="section-head">
-          <div class="section-label">about</div>
+          <div class="label">about</div>
           <div>
-            <h2 class="section-title">a simple professional home.</h2>
-            <p class="section-copy">
-              this site is intentionally minimal. it’s meant to feel clear, calm, and confident—more like a well-edited notebook than a corporate brochure.
-              the goal is to show what i care about, what i’m working on, and what kind of problems i like spending time with.
+            <h2 class="title">Welcome to my world!</h2>
+            <p class="copy">
+              I build AI systems that think, act, and get things done. Agents that take initiative, automate workflows, and make decisions that actually move things forward.
+
+              Some say AGI is here, others say it's almost here, yet some say AGI cannot be achieved. For me, AGI is the logical next version of what we're already building.
+
+              Until then? One focus: building AI workflows that are useful. 😊
             </p>
           </div>
         </div>
 
-        <div class="beliefs">
-          <div class="belief">i think useful systems should be both intelligent and trustworthy.</div>
-          <div class="belief">i think security should be designed in, not added on later.</div>
-          <div class="belief">i think research matters most when it survives contact with reality.</div>
-          <div class="belief">i think cloud infrastructure should feel boring in the best possible way: reliable, scalable, and invisible when it works.</div>
+
+      </div>
+    </section>
+
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">stack</div>
+          <div>
+            <h2 class="title">Tools I actually use.</h2>
+            <p class="copy">the hardware, software, and services that power my daily work in AI, research, and systems building.</p>
+          </div>
+        </div>
+
+        <div class="stack-grid">
+
+          <div class="stack-group">
+            <div class="stack-group-label">AI &amp; Agents</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Hermes</span>
+                <span class="stack-item-desc">personal multi-agent orchestration</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Claude</span>
+                <span class="stack-item-desc">primary reasoning model</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Gemma 4</span>
+                <span class="stack-item-desc">local inference on Apple Silicon</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">llama.cpp</span>
+                <span class="stack-item-desc">GGUF model serving</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">x-cli</span>
+                <span class="stack-item-desc">X/Twitter automation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-group">
+            <div class="stack-group-label">Dev &amp; Infrastructure</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Python</span>
+                <span class="stack-item-desc">primary language</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Flask</span>
+                <span class="stack-item-desc">lightweight web backend</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">SQLite</span>
+                <span class="stack-item-desc">session and state storage</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">GitHub</span>
+                <span class="stack-item-desc">version control and CI</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Telegram Bot API</span>
+                <span class="stack-item-desc">agent communication layer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stack-group">
+            <div class="stack-group-label">Hardware &amp; OS</div>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-item-name">Mac Mini M-series</span>
+                <span class="stack-item-desc">always-on home server</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">macOS</span>
+                <span class="stack-item-desc">primary operating system</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Obsidian</span>
+                <span class="stack-item-desc">notes and research vault</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">Browserbase</span>
+                <span class="stack-item-desc">headless browser automation</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-item-name">DuckDuckGo</span>
+                <span class="stack-item-desc">privacy-first web search</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section class="section" id="work">
+    <section class="section" id="research">
       <div class="container">
         <div class="section-head">
-          <div class="section-label">work</div>
+          <div class="label">research</div>
           <div>
-            <h2 class="section-title">things i care about building.</h2>
-            <p class="section-copy">
-              not case studies in the usual portfolio sense. more like a map of the domains and system problems i’m drawn to.
+            <h2 class="title">Where my thinking lives.</h2>
+            <p class="copy">
+              These are the research areas I keep returning to because they matter, and the questions in them are nowhere near settled.
             </p>
           </div>
         </div>
 
         <div class="cards">
-          <article class="card">
-            <div class="card-visual dark">
-              <div class="mini-ui">
-                <div class="ui-line"></div>
-                <div class="ui-grid">
-                  <div class="ui-box"></div>
-                  <div class="ui-box"></div>
-                </div>
-                <div class="ui-line small"></div>
-              </div>
-            </div>
-            <div class="card-tag">01 / AI systems</div>
-            <h3>applying AI where trust, risk, and operational accuracy matter.</h3>
-            <p>
-              i’m interested in AI systems that support real decisions—fraud detection, intelligent analysis,
-              automation workflows, and tools that improve operational effectiveness without adding chaos.
-            </p>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
+            <div class="tag">01 / AI systems</div>
+            <h3>Applying AI where trust, risk, and operational accuracy matter.</h3>
+            <p>AI agents that support real decisions: fraud detection, workflow automation, systems that improve outcomes without adding noise.</p>
           </article>
 
-          <article class="card">
-            <div class="card-visual blue">
-              <div class="mini-ui">
-                <div class="ui-line"></div>
-                <div class="ui-grid">
-                  <div class="ui-box"></div>
-                  <div class="ui-box"></div>
-                </div>
-                <div class="ui-line small"></div>
-              </div>
-            </div>
-            <div class="card-tag">02 / cybersecurity</div>
-            <h3>understanding how security shapes confidence, behavior, and adoption.</h3>
-            <p>
-              cybersecurity is not just a technical problem. it changes how people trust systems,
-              how organizations respond to risk, and how digital products succeed or fail.
-            </p>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
+            <div class="tag">02 / cybersecurity</div>
+            <h3>Security shapes confidence, behavior, and adoption.</h3>
+            <p>Security isn't just technical. It shapes whether people trust a system and whether products survive contact with the real world.</p>
           </article>
 
-          <article class="card">
-            <div class="card-visual green">
-              <div class="mini-ui">
-                <div class="ui-line"></div>
-                <div class="ui-grid">
-                  <div class="ui-box"></div>
-                  <div class="ui-box"></div>
-                </div>
-                <div class="ui-line small"></div>
-              </div>
-            </div>
-            <div class="card-tag">03 / information systems</div>
-            <h3>studying the systems behind digital transformation.</h3>
-            <p>
-              i’m drawn to questions about adoption, usability, governance, and how technology creates measurable outcomes inside institutions and markets.
-            </p>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
+            <div class="tag">03 / information systems</div>
+            <h3>The systems behind digital transformation.</h3>
+            <p>Adoption, usability, governance. How technology creates measurable outcomes inside institutions and markets.</p>
           </article>
 
-          <article class="card">
-            <div class="card-visual">
-              <div class="mini-ui">
-                <div class="ui-line"></div>
-                <div class="ui-grid">
-                  <div class="ui-box"></div>
-                  <div class="ui-box"></div>
-                </div>
-                <div class="ui-line small"></div>
-              </div>
-            </div>
-            <div class="card-tag">04 / cloud architecture</div>
-            <h3>building infrastructure that scales quietly and holds up under pressure.</h3>
-            <p>
-              i care about resilient systems, sensible architecture decisions, and cloud foundations that make products easier to maintain, secure, and extend.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="writing">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-label">research</div>
-          <div>
-            <h2 class="section-title">public research signals.</h2>
-            <p class="section-copy">
-              these are based on publicly accessible scholar snippets and search results. they should be treated as a starting point and refined with your exact preferred wording.
-            </p>
-          </div>
-        </div>
-
-        <div class="list">
-          <article class="list-item">
-            <div class="list-meta">2025</div>
-            <div>
-              <h3>cybersecurity and customer satisfaction in digital banking</h3>
-              <p class="muted">research connecting cybersecurity and customer satisfaction through an information systems success model.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="list-meta">2025</div>
-            <div>
-              <h3>AI-driven fraud detection in the nigerian banking sector</h3>
-              <p class="muted">an analysis of cost, compliance, and competency in AI-powered fraud detection systems.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="list-meta">2025</div>
-            <div>
-              <h3>behavioral analysis of AI-powered solutions for cyberthreat-induced complaints</h3>
-              <p class="muted">work exploring how people respond to AI-enabled solutions in lower-income digital environments.</p>
-            </div>
-          </article>
-
-          <article class="list-item">
-            <div class="list-meta">2025</div>
-            <div>
-              <h3>drivers of AI in modern supply chain management success</h3>
-              <p class="muted">research examining what pushes intelligent systems adoption in contemporary supply chain settings.</p>
-            </div>
+          <article class="card" style="min-height:0; padding: 1.25rem;">
+            <div class="tag">04 / cloud architecture</div>
+            <h3>Infrastructure that scales quietly and holds up under pressure.</h3>
+            <p>Resilient architecture choices and cloud foundations that make products easier to secure, maintain, and extend.</p>
           </article>
         </div>
       </div>
@@ -520,28 +598,21 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="section-head">
-          <div class="section-label">contact</div>
+          <div class="label">contact</div>
           <div>
-            <h2 class="section-title">find me on the internet.</h2>
-            <p class="section-copy">
-              for now, the simplest version is the right one.
-            </p>
+            <h2 class="title">Say hello.</h2>
+
           </div>
         </div>
-
         <div class="list">
-          <div class="list-item">
-            <div class="list-meta">linkedin</div>
-            <div><h3><a href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">linkedin.com/in/victor-ologun</a></h3></div>
+          <div class="links-row" style="margin-top:0; margin-bottom: 1.5rem; justify-content: center;">
+            <a class="pill" href="mailto:ologunv@gmail.com">Email</a>
+            <a class="pill" href="assets/victor-ologun-resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+            <a class="pill" href="https://www.linkedin.com/in/victor-ologun" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="pill" href="https://x.com/VictorOlogun3" target="_blank" rel="noreferrer">Twitter</a>
+            <a class="pill" href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar</a>
           </div>
-          <div class="list-item">
-            <div class="list-meta">scholar</div>
-            <div><h3><a href="https://scholar.google.com/citations?user=PPu0v2EAAAAJ&hl=en" target="_blank" rel="noreferrer">google scholar profile</a></h3></div>
-          </div>
-          <div class="list-item">
-            <div class="list-meta">orcid</div>
-            <div><h3><a href="https://orcid.org/0009-0009-0102-1608" target="_blank" rel="noreferrer">0009-0009-0102-1608</a></h3></div>
-          </div>
+
         </div>
       </div>
     </section>
@@ -549,8 +620,67 @@
 
   <footer class="footer">
     <div class="container">
-      <p>victor ologun — a minimal personal website, rebuilt with a cleaner editorial layout.</p>
+      <p>Victor Ologun</p>
     </div>
   </footer>
+
+  <script>
+    (() => {
+      const nav = document.querySelector('.nav-links');
+      const pill = nav?.querySelector('.nav-pill');
+      const links = nav ? [...nav.querySelectorAll('a[data-section]')] : [];
+      const sections = links
+        .map((link) => document.getElementById(link.dataset.section))
+        .filter(Boolean);
+
+      if (!nav || !pill || !links.length) return;
+
+      let suppressScrollSync = false;
+      let suppressTimer = null;
+
+      const movePill = (link) => {
+        const index = Number(link.dataset.index || 0);
+        pill.style.transform = `translateX(${index * 100}%)`;
+      };
+
+      const setActive = (link) => {
+        links.forEach((item) => item.classList.toggle('active', item === link));
+        movePill(link);
+      };
+
+      const updateActiveFromScroll = () => {
+        if (suppressScrollSync) return;
+        const threshold = window.innerHeight * 0.28;
+        let current = links[0];
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= threshold) {
+            const match = links.find((link) => link.dataset.section === section.id);
+            if (match) current = match;
+          }
+        });
+
+        setActive(current);
+      };
+
+      links.forEach((link) => {
+        link.addEventListener('click', () => {
+          suppressScrollSync = true;
+          clearTimeout(suppressTimer);
+          setActive(link);
+          suppressTimer = setTimeout(() => {
+            suppressScrollSync = false;
+            updateActiveFromScroll();
+          }, 450);
+        });
+      });
+
+      window.addEventListener('scroll', updateActiveFromScroll, { passive: true });
+      window.addEventListener('resize', updateActiveFromScroll);
+      window.addEventListener('load', updateActiveFromScroll);
+      updateActiveFromScroll();
+    })();
+  </script>
 </body>
 </html>
